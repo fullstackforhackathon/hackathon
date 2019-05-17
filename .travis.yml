@@ -5,9 +5,6 @@ node_js:
 cache:
     directories:
         - node_modules
-before_install:
-    - openssl aes-256-cbc -K $encrypted_8a25f8bf4b0f_key -iv $encrypted_8a25f8bf4b0f_iv
-      -in deploy_rsa.enc -out deploy_rsa -d
 script:
     - yarn global add codecov -g
     - yarn test --coverage && codecov
@@ -19,7 +16,7 @@ before_deploy:
 deploy:
     provider: script
     skip_cleanup: true
-    script: rsync -r --delete-after -e "ssh -i deploy_rsa -p 37009" $TRAVIS_BUILD_DIR/build/ marchenkors@45.66.10.180:/home/example/www/enrghackfullstack
+    script: rsync -r --delete-after -e "ssh -i deploy_rsa -p 37009" $TRAVIS_BUILD_DIR/build/ marchenkors@$server_ip:/home/example/www/enrghackfullstack
     on:
         branch: master
 notifications:

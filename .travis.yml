@@ -17,8 +17,8 @@ before_deploy:
 deploy:
     provider: script
     skip_cleanup: true
-    script: rsync -r --delete-after -e "ssh -i deploy_rsa -p 37009" $TRAVIS_BUILD_DIR/build/
-        marchenkors@$server_ip:/home/example/www/enrghackfullstack
+    script: rsync -r --delete-after -e "ssh -i deploy_rsa -p $server_port" $TRAVIS_BUILD_DIR/build/
+        $server_user@$server_ip:/home/example/www/enrghackfullstack
     on:
         branch: master
 notifications:

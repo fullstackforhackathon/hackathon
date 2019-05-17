@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   public componentDidMount(): void {
-    axios.get("http://localhost:5000/api/values").then(response => {
+    axios.get("http://45.66.10.180:81/api/values").then(response => {
       console.log(response);
     }).catch(err => console.log('fail: ', err));
   }

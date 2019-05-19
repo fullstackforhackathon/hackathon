@@ -9,18 +9,25 @@ import FileDragDrop from "./components/FileDragDrop";
 
 import UploadDragDrop from "./components/UploadDragDrop";
 
+import store from "./Store/store";
+import { Provider } from "react-redux";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:61693";
+
 class App extends React.Component {
     render() {
         return (
-            <DragDropContextProvider backend={HTML5Backend}>
-                <div className="app">
-                    <div className="card">
-                        {/* <FileDragDrop /> */}
-                        {/* <UploadDragDrop /> */}
-                        <SortableDragDrop />
+            <Provider store={store}>
+                <DragDropContextProvider backend={HTML5Backend}>
+                    <div className="app">
+                        <div className="card">
+                            <UploadDragDrop />
+                            <SortableDragDrop />
+                        </div>
                     </div>
-                </div>
-            </DragDropContextProvider>
+                </DragDropContextProvider>
+            </Provider>
         );
     }
 }

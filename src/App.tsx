@@ -9,6 +9,7 @@ import FileDragDrop from './components/FileDragDrop';
 
 import UploadDragDrop from './components/UploadDragDrop';
 
+import ReportGrid from './components/ReportGrid';
 import DateRangePicker from './components/DateRangePicker';
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
             {/* <FileDragDrop /> */}
             {/* <UploadDragDrop /> */}
             {/* <SortableDragDrop /> */}
+            {/* <ReportGrid /> */}
             <DateRangePicker />
           </div>
         </div>

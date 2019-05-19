@@ -1,0 +1,42 @@
+.field {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  list-style: none;
+}
+
+.fieldContainer {
+  margin: 0;
+  padding: 0;
+  margin-right: 2rem;
+}
+
+.dragDropField {
+  border: 1px dashed gray;
+  cursor: move;
+}
+
+.button {
+  cursor: pointer;
+  background-color: rgba(103, 58, 183, 1);
+  color: white;
+}
+
+.inputElementContainer {
+  width: 100%;
+  display: flex;
+}
+
+.inputElementContainer > input {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.inputElementContainer > button {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}

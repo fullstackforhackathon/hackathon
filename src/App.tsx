@@ -24,6 +24,7 @@ class App extends React.Component {
                         <div className="card">
                             <UploadDragDrop />
                             <SortableDragDrop />
+                            <ReportGrid />
                         </div>
                     </div>
                 </DragDropContextProvider>

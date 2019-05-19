@@ -4,6 +4,10 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import './dateRangePicker.css';
 
+interface IProps {
+
+}
+
 interface IState {
     startDate: Date;
     endDate: Date;

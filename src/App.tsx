@@ -21,8 +21,8 @@ class App extends React.Component {
             {/* <FileDragDrop /> */}
             {/* <UploadDragDrop /> */}
             {/* <SortableDragDrop /> */}
-            {/* <ReportGrid /> */}
-            <DateRangePicker />
+            <ReportGrid />
+            {/* <DateRangePicker /> */}
           </div>
         </div>
       </DragDropContextProvider>

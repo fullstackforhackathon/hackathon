@@ -3,6 +3,8 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
+import './reportGrid.css';
+
 const columnDefs = [
     { headerName: "ИД", field: "id" },
     { headerName: "Номер", field: "number" },
@@ -12,15 +14,19 @@ const columnDefs = [
     { headerName: "Год ввода в эксплуатацию", field: "commissionYear" },
     { headerName: "Количество цепей", field: "numberOfChains" },
     {
-        headerName: "Длина всего, км", children: [
-            { headerName: "По трассе", field: "summaryLength" },
-            { headerName: "На 1 цепь", field: "summaryLengthByChain" },
-        ]
-    },
-    {
-        headerName: "Длина в т.ч. по участкам, км", children: [
-            { headerName: "По трассе", field: "length" },
-            { headerName: "На 1 цепь", field: "lengthByChain" },
+        headerName: 'Провода', children: [
+            {
+                headerName: "Длина всего, км", children: [
+                    { headerName: "По трассе", field: "summaryLength" },
+                    { headerName: "На 1 цепь", field: "summaryLengthByChain" },
+                ]
+            },
+            {
+                headerName: "Длина в т.ч. по участкам, км", children: [
+                    { headerName: "По трассе", field: "length" },
+                    { headerName: "На 1 цепь", field: "lengthByChain" },
+                ]
+            },
         ]
     },
     { headerName: "Марка", field: "lineMark" },
@@ -81,13 +87,7 @@ const rowData = [
 
 const HelloWorld = () => {
     return (
-        <div
-            className="ag-theme-balham"
-            style={{
-                height: '500px',
-                width: '800px'
-            }}
-        >
+        <div className="ag-theme-balham report-grid">
             <AgGridReact
                 defaultColDef={{ editable: true }}
                 columnDefs={columnDefs}

@@ -9,6 +9,8 @@ import FileDragDrop from './components/FileDragDrop';
 
 import UploadDragDrop from './components/UploadDragDrop';
 
+import DateRangePicker from './components/DateRangePicker';
+
 class App extends React.Component {
   render() {
     return (
@@ -17,10 +19,11 @@ class App extends React.Component {
           <div className="card">
             {/* <FileDragDrop /> */}
             {/* <UploadDragDrop /> */}
-            <SortableDragDrop />
+            {/* <SortableDragDrop /> */}
+            <DateRangePicker />
           </div>
-        </div >
-      </DragDropContextProvider >
+        </div>
+      </DragDropContextProvider>
     );
   }
 }

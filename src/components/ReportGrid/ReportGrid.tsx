@@ -8,29 +8,32 @@ import "./reportGrid.css";
 // import { IRootReducerState } from "../../Reducers/RootReducer";
 
 const columnDefs = [
-    { headerName: "ИД", field: "id" },
-    { headerName: "Номер", field: "number" },
-    { headerName: "Диспетчерский номер", field: "dispatchNumber" },
-    { headerName: "Наименование ЛЭП", field: "name" },
-    { headerName: "Напряжение, кВ", field: "voltage" },
-    { headerName: "Год ввода в эксплуатацию", field: "commissionYear" },
-    { headerName: "Количество цепей", field: "numberOfChains" },
+    { headerName: "ИД", field: "id", resizable: true },
+    { headerName: "Номер", field: "number", resizable: true },
+    { headerName: "Диспетчерский номер", field: "dispatchNumber", resizable: true },
+    { headerName: "Наименование ЛЭП", field: "name", resizable: true },
+    { headerName: "Напряжение, кВ", field: "voltage", resizable: true },
+    { headerName: "Год ввода в эксплуатацию", field: "commissionYear", resizable: true },
+    { headerName: "Количество цепей", field: "numberOfChains", resizable: true },
     {
         headerName: "Провода",
         children: [
             {
                 headerName: "Длина всего, км",
-                children: [{ headerName: "По трассе", field: "summaryLength" }, { headerName: "На 1 цепь", field: "summaryLengthByChain" }]
+                children: [{ headerName: "По трассе", field: "summaryLength" }, { headerName: "На 1 цепь", field: "summaryLengthByChain" }],
+                resizable: true
             },
             {
                 headerName: "Длина в т.ч. по участкам, км",
-                children: [{ headerName: "По трассе", field: "length" }, { headerName: "На 1 цепь", field: "lengthByChain" }]
+                children: [{ headerName: "По трассе", field: "length" }, { headerName: "На 1 цепь", field: "lengthByChain" }],
+                resizable: true
             }
-        ]
+        ],
+        resizable: true
     },
-    { headerName: "Марка", field: "lineMark" },
-    { headerName: "Техническое состояние", field: "technicalStatus" },
-    { headerName: "Срок службы", field: "date" }
+    { headerName: "Марка", field: "lineMark", resizable: true },
+    { headerName: "Техническое состояние", field: "technicalStatus", resizable: true },
+    { headerName: "Срок службы", field: "date", resizable: true }
 ];
 
 const rowData = [

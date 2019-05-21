@@ -9,24 +9,24 @@ import HTML5Backend from "react-dnd-html5-backend";
 // import UploadDragDrop from "./components/UploadDragDrop";
 // import DateRangePicker from './components/DateRangePicker';
 
-import ReportGrid from './components/ReportGrid';
+import ReportGrid from "./components/ReportGrid";
 
 class App extends React.Component {
-  render() {
-    return (
-      <DragDropContextProvider backend={HTML5Backend}>
-        <div className="app">
-          <div className="card">
-            {/* <FileDragDrop /> */}
-            {/* <UploadDragDrop /> */}
-            <ReportGrid />
-            {/* <SortableDragDrop /> */}
-            {/* <DateRangePicker /> */}
-          </div>
-        </div>
-      </DragDropContextProvider>
-    );
-  }
+    render() {
+        return (
+            <DragDropContextProvider backend={HTML5Backend}>
+                <div className="app">
+                    <div className="card">
+                        {/* <FileDragDrop /> */}
+                        {/* <UploadDragDrop /> */}
+                        <ReportGrid />
+                        {/* <SortableDragDrop /> */}
+                        {/* <DateRangePicker /> */}
+                    </div>
+                </div>
+            </DragDropContextProvider>
+        );
+    }
 }
 
 export default App;

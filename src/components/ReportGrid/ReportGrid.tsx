@@ -87,7 +87,7 @@ const rowData = [
     }
 ];
 
-const HelloWorld = () => {
+const ReportGrid = () => {
     return (
         <div className="ag-theme-balham report-grid">
             <AgGridReact
@@ -102,5 +102,5 @@ const HelloWorld = () => {
 // const mapStateToProps = (state: IRootReducerState) => ({
 //     excel: state.excelData.excel
 // });
-export default HelloWorld;
+export default ReportGrid;
 // export default connect(mapStateToProps)(HelloWorld);

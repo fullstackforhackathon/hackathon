@@ -1,61 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import React from "react";
+import "./App.css";
+import { DragDropContextProvider } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
+
+// import DragDrop from "./components/DragDrop";
+// import SortableDragDrop from "./components/SortableDragDropAndCustomFields";
+// import FileDragDrop from "./components/FileDragDrop";
+// import UploadDragDrop from "./components/UploadDragDrop";
+// import DateRangePicker from './components/DateRangePicker';
+
+import ReportGrid from './components/ReportGrid';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
-        </header>
-      </div>
+      <DragDropContextProvider backend={HTML5Backend}>
+        <div className="app">
+          <div className="card">
+            {/* <FileDragDrop /> */}
+            {/* <UploadDragDrop /> */}
+            <ReportGrid />
+            {/* <SortableDragDrop /> */}
+            {/* <DateRangePicker /> */}
+          </div>
+        </div>
+      </DragDropContextProvider>
     );
   }
-
-  public componentDidMount(): void {
-    axios.get("http://45.66.10.180:81/api/values").then(response => {
-      console.log(response);
-    }).catch(err => console.log('fail: ', err));
-  }
 }
-
-// const App: React.FC = () => {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-
-//   public componentDidMount(): void {
-//     data = axios
-
-//   }
-// }
 
 export default App;

@@ -6,7 +6,7 @@ import HTML5Backend from "react-dnd-html5-backend";
 import DragDrop from "./components/DragDrop";
 import SortableDragDrop from "./components/SortableDragDropAndCustomFields";
 import FileDragDrop from "./components/FileDragDrop";
-
+import ReportGrid from "./components/ReportGrid";
 import UploadDragDrop from "./components/UploadDragDrop";
 
 import store from "./Store/store";
@@ -22,8 +22,8 @@ class App extends React.Component {
                 <DragDropContextProvider backend={HTML5Backend}>
                     <div className="app">
                         <div className="card">
-                            <UploadDragDrop />
-                            <SortableDragDrop />
+                            {/* <UploadDragDrop />
+                            <SortableDragDrop /> */}
                             <ReportGrid />
                         </div>
                     </div>

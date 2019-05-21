@@ -4,7 +4,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 import "./reportGrid.css";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import { IRootReducerState } from "../../Reducers/RootReducer";
 
 const columnDefs = [

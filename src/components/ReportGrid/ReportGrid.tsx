@@ -5,7 +5,7 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 import "./reportGrid.css";
 // import { connect } from "react-redux";
-import { IRootReducerState } from "../../Reducers/RootReducer";
+// import { IRootReducerState } from "../../Reducers/RootReducer";
 
 const columnDefs = [
     { headerName: "ИД", field: "id" },
@@ -96,8 +96,8 @@ const HelloWorld = () => {
         </div>
     );
 };
-const mapStateToProps = (state: IRootReducerState) => ({
-    excel: state.excelData.excel
-});
+// const mapStateToProps = (state: IRootReducerState) => ({
+//     excel: state.excelData.excel
+// });
 export default HelloWorld;
 // export default connect(mapStateToProps)(HelloWorld);

@@ -1,13 +1,27 @@
-import React, { Component } from "react";
+import * as React from "react";
 import Dropzone from "../Dropzone/Dropzone";
 import "./upload.css";
-import Progress from "../Progress/Progress";
+import Progress from "./../Progress/Progress";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { uploadExcelFile } from "./../../../Actions/UploadFileAction";
+import { uploadExcelFile } from "../../../Actions/UploadFileAction";
+import { IRootReducerState } from "../../../Reducers/RootReducer";
 
-class Upload extends Component {
-    constructor(props) {
+interface IUploadProps {
+    upload: (file: any) => void;
+}
+
+interface IUploadState {
+    files: any[];
+    uploading: boolean;
+    uploadProgress: any;
+    successfullUploaded: boolean;
+}
+
+type Props = IUploadProps & IStateToProps;
+
+class Upload extends React.Component<Props, IUploadState> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             files: [],
@@ -18,11 +32,10 @@ class Upload extends Component {
 
         this.onFilesAdded = this.onFilesAdded.bind(this);
         this.uploadFiles = this.uploadFiles.bind(this);
-        // this.sendRequest = this.sendRequest.bind(this);
         this.renderActions = this.renderActions.bind(this);
     }
 
-    onFilesAdded(files) {
+    onFilesAdded(files: any) {
         this.setState(prevState => ({
             files: prevState.files.concat(files)
         }));
@@ -30,22 +43,21 @@ class Upload extends Component {
 
     async uploadFiles() {
         this.setState({ uploadProgress: {}, uploading: true });
-        const promises = [];
+        const promises: any[] = [];
         this.state.files.forEach(file => {
             promises.push(this.props.upload(file));
         });
 
         try {
             await Promise.all(promises);
-
             this.setState({ successfullUploaded: true, uploading: false });
         } catch (e) {
             // Not Production ready! Do some error handling here instead...
-            this.setState({ successfullUploaded: true, uploading: false });
+            this.setState({ successfullUploaded: false, uploading: false });
         }
     }
 
-    renderProgress(file) {
+    renderProgress(file: any) {
         const uploadProgress = this.state.uploadProgress[file.name];
         if (this.state.uploading || this.state.successfullUploaded) {
             return (
@@ -80,7 +92,6 @@ class Upload extends Component {
         if (this.props.excel) return null;
         return (
             <div className="Upload">
-                <span className="Title">Upload Files</span>
                 <div className="Content">
                     <div>
                         <Dropzone onFilesAdded={this.onFilesAdded} disabled={this.props.fetching || this.state.uploading || this.state.successfullUploaded} />
@@ -102,13 +113,18 @@ class Upload extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+interface IStateToProps {
+    excel: any;
+    fetching: boolean;
+}
+
+const mapStateToProps = (state: IRootReducerState) => ({
     fetching: state.excelData.fetching,
     excel: state.excelData.excel
 });
 
-const mapDisaptchToProps = dispatch => ({
-    upload: file => dispatch(uploadExcelFile(file))
+const mapDisaptchToProps = (dispatch: Dispatch) => ({
+    upload: (file: any) => dispatch(uploadExcelFile(file))
 });
 
 export default connect(

@@ -1,9 +1,0 @@
-.fileDragDropContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  top: 20vh;
-  left: 20vw;
-  width: 60vw;
-}

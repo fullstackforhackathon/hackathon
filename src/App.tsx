@@ -17,15 +17,15 @@ class App extends React.Component {
         return (
             <Provider store={store}>
                 <DragDropContextProvider backend={HTML5Backend}>
-                    <div className="app">
-                        <div className="card">
-                            {/* <FileDragDrop /> */}
-                            <UploadDragDrop />
-                            {/* <ReportGrid /> */}
-                            {/* <SortableDragDrop /> */}
-                            {/* <DateRangePicker /> */}
-                        </div>
-                    </div>
+                    {/* <div className="app">
+                        <div className="card"> */}
+                    {/* <FileDragDrop /> */}
+                    <UploadDragDrop />
+                    {/* <ReportGrid /> */}
+                    {/* <SortableDragDrop /> */}
+                    {/* <DateRangePicker /> */}
+                    {/* </div>
+                    </div> */}
                 </DragDropContextProvider>
             </Provider>
         );

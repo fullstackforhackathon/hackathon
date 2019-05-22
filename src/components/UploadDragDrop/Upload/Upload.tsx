@@ -74,6 +74,7 @@ class Upload extends React.Component<Props, IUploadState> {
                 </div>
             );
         }
+        return null;
     }
 
     renderActions() {

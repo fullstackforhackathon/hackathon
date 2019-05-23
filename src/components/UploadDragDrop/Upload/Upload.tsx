@@ -94,9 +94,7 @@ class Upload extends React.Component<Props, IUploadState> {
         return (
             <div className="Upload">
                 <div className="Content">
-                    <div>
-                        <Dropzone onFilesAdded={this.onFilesAdded} disabled={this.props.fetching || this.state.uploading || this.state.successfullUploaded} />
-                    </div>
+                    <Dropzone onFilesAdded={this.onFilesAdded} disabled={this.props.fetching || this.state.uploading || this.state.successfullUploaded} />
                     <div className="Files">
                         {this.state.files.map(file => {
                             return (

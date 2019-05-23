@@ -7,6 +7,6 @@ interface IProgressProps {
 
 export default ({ progress }: IProgressProps) => (
     <div className="progressBar">
-        <div className="progress" style={{ width: progress + "%" }} />
+        <div className="progress" style={{ width: progress <= 100 ? `${progress}%` : `100%` }} />
     </div>
 );

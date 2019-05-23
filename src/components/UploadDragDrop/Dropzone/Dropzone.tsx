@@ -12,7 +12,6 @@ interface IDropzoneState {
 
 class Dropzone extends React.Component<IDropzoneProps, IDropzoneState> {
     protected fileInputRef: any;
-
     constructor(props: IDropzoneProps) {
         super(props);
         this.state = { hightlight: false };

@@ -10,7 +10,7 @@ interface IDropzoneState {
     hightlight: boolean;
 }
 
-class Dropzone extends React.Component<IDropzoneProps, IDropzoneState> {
+export default class Dropzone extends React.Component<IDropzoneProps, IDropzoneState> {
     protected fileInputRef: any;
     constructor(props: IDropzoneProps) {
         super(props);
@@ -84,5 +84,3 @@ class Dropzone extends React.Component<IDropzoneProps, IDropzoneState> {
         );
     }
 }
-
-export default Dropzone;

@@ -6,9 +6,6 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import "./reportGrid.scss";
 
-// import { connect } from "react-redux";
-// import { IRootReducerState } from "../../Reducers/RootReducer";
-
 interface IReportGridProps {
     rowData: any[]
     columnDefs: (ColDef | ColGroupDef)[],
@@ -27,8 +24,5 @@ const ReportGrid = ({ rowData, columnDefs, onCellValueChanged }: IReportGridProp
         </div>
     );
 };
-// const mapStateToProps = (state: IRootReducerState) => ({
-//     excel: state.excelData.excel
-// });
+
 export default ReportGrid;
-// export default connect(mapStateToProps)(HelloWorld);

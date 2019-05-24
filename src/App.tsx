@@ -8,6 +8,7 @@ import HTML5Backend from "react-dnd-html5-backend";
 import UploadDragDrop from "./components/UploadDragDrop/Upload/Upload";
 import { Provider } from "react-redux";
 import store from "./Store/store";
+import "./index.css";
 // import DateRangePicker from './components/DateRangePicker';
 
 // import ReportGrid from "./components/ReportGrid/ReportGrid";

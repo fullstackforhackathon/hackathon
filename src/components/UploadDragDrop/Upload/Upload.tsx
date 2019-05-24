@@ -1,26 +1,27 @@
 import * as React from "react";
 import Dropzone from "../Dropzone/Dropzone";
-import "./upload.css";
 import Progress from "./../Progress/Progress";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { uploadExcelFile } from "../../../Actions/UploadFileAction";
 import { IRootReducerState } from "../../../Reducers/RootReducer";
+import LoadingSpinner from './../../../components/LoadingSpinner/LoadingSpinner';
+import "./upload.scss";
 
 interface IUploadProps {
     upload: (file: any) => void;
 }
 
-interface IUploadState {
+export interface IUploadState {
     files: any[];
     uploading: boolean;
     uploadProgress: any;
     successfullUploaded: boolean;
 }
 
-type Props = IUploadProps & IStateToProps;
+export type Props = IUploadProps & IStateToProps;
 
-class Upload extends React.Component<Props, IUploadState> {
+export class UploadComponent extends React.Component<Props, IUploadState> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -35,13 +36,66 @@ class Upload extends React.Component<Props, IUploadState> {
         this.renderActions = this.renderActions.bind(this);
     }
 
-    onFilesAdded(files: any) {
+    public render() {
+        if (this.props.excel) return null;
+        const isLoad = this.props.fetching || this.state.uploading || this.state.successfullUploaded;
+        return (
+            <div className="upload">
+                {isLoad && <LoadingSpinner />}
+                <div className="content">
+                    <Dropzone onFilesAdded={this.onFilesAdded} disabled={isLoad} />
+                    <div className="files">
+                        {this.state.files.map(file => {
+                            return (
+                                <div key={file.name} className="row">
+                                    <span className="filename">{file.name}</span>
+                                    {this.renderProgress(file)}
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="actions">{this.renderActions()}</div>
+                </div>
+            </div>
+        );
+    }
+
+    private renderProgress(file: any) {
+        const uploadProgress = this.state.uploadProgress[file.name];
+        if (this.state.uploading || this.state.successfullUploaded) {
+            return (
+                <div className="progressWrapper">
+                    <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
+                    <img
+                        className="checkIcon"
+                        style={{ opacity: uploadProgress && uploadProgress.state === "done" ? 0.5 : 0 }}
+                        alt="done"
+                        src="baseline-check_circle_outline-24px.svg"
+                    />
+                </div>
+            );
+        }
+    }
+
+    private renderActions() {
+        if (this.state.successfullUploaded) {
+            return <button onClick={() => this.setState({ files: [], successfullUploaded: false })}>Clear</button>;
+        } else {
+            return (
+                <button disabled={this.state.files.length < 0 || this.state.uploading || this.props.fetching} onClick={this.uploadFiles}>
+                    Upload
+                </button>
+            );
+        }
+    }
+
+    private onFilesAdded(files: any) {
         this.setState(prevState => ({
             files: prevState.files.concat(files)
         }));
     }
 
-    async uploadFiles() {
+    private async uploadFiles() {
         this.setState({ uploadProgress: {}, uploading: true });
         const promises: any[] = [];
         this.state.files.forEach(file => {
@@ -55,60 +109,6 @@ class Upload extends React.Component<Props, IUploadState> {
             // Not Production ready! Do some error handling here instead...
             this.setState({ successfullUploaded: false, uploading: false });
         }
-    }
-
-    renderProgress(file: any) {
-        const uploadProgress = this.state.uploadProgress[file.name];
-        if (this.state.uploading || this.state.successfullUploaded) {
-            return (
-                <div className="ProgressWrapper">
-                    <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
-                    <img
-                        className="CheckIcon"
-                        alt="done"
-                        src="baseline-check_circle_outline-24px.svg"
-                        style={{
-                            opacity: uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
-                        }}
-                    />
-                </div>
-            );
-        }
-        return null;
-    }
-
-    renderActions() {
-        if (this.state.successfullUploaded) {
-            return <button onClick={() => this.setState({ files: [], successfullUploaded: false })}>Clear</button>;
-        } else {
-            return (
-                <button disabled={this.state.files.length < 0 || this.state.uploading} onClick={this.uploadFiles}>
-                    Upload
-                </button>
-            );
-        }
-    }
-
-    render() {
-        if (this.props.excel) return null;
-        return (
-            <div className="Upload">
-                <div className="Content">
-                    <Dropzone onFilesAdded={this.onFilesAdded} disabled={this.props.fetching || this.state.uploading || this.state.successfullUploaded} />
-                    <div className="Files">
-                        {this.state.files.map(file => {
-                            return (
-                                <div key={file.name} className="Row">
-                                    <span className="Filename">{file.name}</span>
-                                    {this.renderProgress(file)}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-                <div className="Actions">{this.renderActions()}</div>
-            </div>
-        );
     }
 }
 
@@ -126,7 +126,4 @@ const mapDisaptchToProps = (dispatch: Dispatch) => ({
     upload: (file: any) => dispatch(uploadExcelFile(file))
 });
 
-export default connect(
-    mapStateToProps,
-    mapDisaptchToProps
-)(Upload);
+export default connect(mapStateToProps, mapDisaptchToProps)(UploadComponent);

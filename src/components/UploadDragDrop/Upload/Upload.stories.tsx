@@ -1,11 +1,41 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Upload from './Upload';
-import { Provider } from 'react-redux';
-import store from '../../../Store/store';
+import { UploadComponent, Props, IUploadState } from './Upload';
+import { action } from '@storybook/addon-actions';
+import { StateMock } from '@react-mock/state';
+
+const mockState = (ui: any, state: IUploadState) => <StateMock state={state}>{ui}</StateMock>;
+const state = {
+    files: [
+        { name: 'test1.tsx' },
+        { name: 'test.tsx' },
+        { name: 'test.tsx' },
+        { name: 'test.tsx' },
+        { name: 'test.tsx' },
+        { name: 'test.tsx' },
+        { name: 'test.tsx' },
+        { name: 'test.tsx' },
+        { name: 'test.tsx' },
+    ],
+    uploading: false,
+    uploadProgress: {
+        'test1.tsx': {
+            percentage: 30
+        }
+    },
+    successfullUploaded: false,
+}
+
+const props: Props = {
+    excel: null,
+    fetching: false,
+    upload: action('upload')
+}
+
+const UploadComponentWithState = () => mockState(<UploadComponent {...props} />, { ...state, uploading: true });
 
 storiesOf('Upload', module)
-    .addDecorator(story => <div style={{ padding: "3rem", width: 800, height: 290, border: "1px dashed black" }}>{story()}</div>)
-    .addDecorator(story => <Provider store={store}>{story()}</Provider>)
-    .add('Simple', () => <Upload />);
-
+    .addDecorator(story => <div style={{ width: 800, height: 270 }}>{story()}</div>)
+    .add('default', () => <UploadComponent {...props} />)
+    .add('loading', () => <UploadComponent {...props} fetching={true} />)
+    .add('loading with files', () => <UploadComponentWithState />);

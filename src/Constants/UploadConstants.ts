@@ -1,4 +1,3 @@
-export const UPLOAD_FILE = "UPLOAD_FILE";
-export const UPLOAD_FILE_PENDING = "UPLOAD_FILE_PENDING";
-export const UPLOAD_FILE_FULFILLED = "UPLOAD_FILE_FULFILLED";
-export const UPLOAD_FILE_REJECTED = "UPLOAD_FILE_REJECTED";
+import { constantGenerator } from "./ConstantGenerator";
+// USE crc snippet to this: write "crc" -> push tab -> enter action type name -> press tab to uppercase;
+export const { UPLOAD_FILE, UPLOAD_FILE_PENDING, UPLOAD_FILE_FULFILLED, UPLOAD_FILE_REJECTED } = constantGenerator("UPLOAD_FILE");

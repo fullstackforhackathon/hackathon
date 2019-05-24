@@ -4,6 +4,7 @@
         "body": [
             "export const { ${1/(.*)/${1:/upcase}/}, ${1/(.*)/${1:/upcase}/}_PENDING, ${1/(.*)/${1:/upcase}/}_FULFILLED, ${1/(.*)/${1:/upcase}/}_REJECTED } = constantGenerator(\"${1/(.*)/${1:/upcase}/}\");"
         ],
-        "description": "create consts for action type"
+        "description": "create consts for action type",
+        "scope": "typescript"
     }
 }

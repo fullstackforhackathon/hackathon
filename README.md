@@ -8,3 +8,8 @@ import { constantGenerator } from "../utils/ConstantGenerator";
 
 export const { UPLOAD_FILE, UPLOAD_FILE_PENDING, UPLOAD_FILE_FULFILLED, UPLOAD_FILE_REJECTED } = constantGenerator("UPLOAD_FILE");
 ```
+
+## Components development
+We have story book to develop components.
+Use `$yarn storybook` to run server with it.
+Don't install any packages when storybook is runing
